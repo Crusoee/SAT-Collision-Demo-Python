@@ -77,7 +77,8 @@ def main():
     triangle = Polygon([(0, 0), (0, -4), (4, -4)])
     square = Polygon([(2, 0), (4, -2), (2, -4), (0, -2)])
 
-    triangle.transform(-1.0001,-1.000001)
+    # fiddle with the transformation here!
+    triangle.transform(0,0)
 
     print(SAT.CheckCollision(triangle, square))
 
