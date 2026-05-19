@@ -1,0 +1,1 @@
+Here is an example of the Separated Axis Theorem put together using Python. The SAT states that two 2D polygons aren't colliding if there is atleast one axis separating them. This theorem is useful for many differen't applications, namely physics sims and games! 
