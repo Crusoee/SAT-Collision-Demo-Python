@@ -57,18 +57,14 @@ class SAT:
         axes2 = SAT.GetAxes(poly2)
 
         for axis in axes1 + axes2:
-            proj1 = []
-            proj2 = []
+            proj1 = [vertex.dot(axis) for vertex in poly1.vertices]
+            proj2 = [vertex.dot(axis) for vertex in poly2.vertices]
 
-            for vertex in poly1.vertices:
-                proj1.append(math.copysign(vertex.proj(axis).mag(), vertex.proj(axis).x))
-            for vertex in poly2.vertices:
-                proj2.append(math.copysign(vertex.proj(axis).mag(), vertex.proj(axis).x))
+            min1, max1 = min(proj1), max(proj1)
+            min2, max2 = min(proj2), max(proj2)
 
-            if min(proj2) <= min(proj1) <= max(proj2) or min(proj2) <= max(proj1) <= max(proj2) or\
-                min(proj1) <= min(proj2) <= max(proj1) or min(proj1) <= max(proj2) <= max(proj1):
-                    continue
-            else:
+            # Separating axis found
+            if max1 < min2 or max2 < min1:
                 return False
 
         return True
